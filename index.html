@@ -1177,6 +1177,12 @@
 				</div>
 			</div>
 		</div>
+		
+		<input type="radio" name="tabs" id="tab4">
+		<label for="tab4">Prototype</label>
+		<div class="tab-content tag-filtered">
+			<div id="tab-prototype"></div>
+		</div>
 	</div>
  
     <script>
@@ -1233,7 +1239,7 @@
 				let $content = $('<div class="markdown-body"></div>');
 				let $body = $('<div class="card-container"></div>');
 				
-				$("#tab-features h3").each(function() {
+				data.$dom_element.find("h3").each(function() {
 					var $card = $('<div class="card"></div>');
 
 					var $current = $(this);
@@ -1279,7 +1285,7 @@
 			{
 				data.$dom_element.find('.card').removeClass('active');
 				
-				$('.tags-filter').find('i.active').each(function() {
+				data.$dom_element.find('.tags-filter i.active').each(function() {
 					const active_tag = $(this).text().trim();
 
 					for ( const tag in data.tags ) {
@@ -1398,7 +1404,21 @@
 			load_md( "branch/beta.md", 				"#card-branch-beta" );
 			load_md( "branch/pbr.md", 				"#card-branch-pbr" );
 			load_md( "branch/pbr-inspector.md", 	"#card-branch-pbr-inspector" );
-			load_md( "branch/pbr-rtx-inspector.md", "#card-branch-pbr-rtx-inspector" );
+			load_md( "branch/pbr-rtx-inspector.md", "#card-branch-pbr-rtx-inspector" );		
+			load_md( "prototype.md", "#tab-prototype", function( data ) {
+				const branch_tags = {
+					'Master'		: { color: "#3fb950", tags:['master'] },
+					'PBR'			: { color: "#2f81f7", tags:['pbr'] },
+					'All'			: { color: "#2f81f7", tags:['master', 'pbr'] },
+				};
+				const default_branch_tag = branch_tags['All'];
+				
+				feature_card( data );
+				tag_filter( data, default_branch_tag );
+				branch_tags_macros( data, branch_tags, default_branch_tag );
+				
+				md_ba.parse();	// parse before & after images
+			});
         });
     </script>
 </body>
