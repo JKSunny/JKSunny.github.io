@@ -1197,7 +1197,7 @@
 				{
 					var that = typeof this === "undefined" ? md_ba : this;
 					
-					$( "[alt=md_ba]" ).each( function() {
+					data.$dom_element.find( "[alt=md_ba]" ).each( function() {
 						let img_0 = $(this);
 						let img_1 = $(this).next("img");
 						let md_ba = $(that.template);
@@ -1206,7 +1206,7 @@
 						$(md_ba).append(img_0).append(img_1);
 					});
 
-					$( ".md_ba" ).each( function() {
+					data.$dom_element.find( ".md_ba" ).each( function() {
 						let md_ba = $( this );
 						$( md_ba ).append( that.range );
 						$( md_ba ).on( "input", "input[type=range]", function(){
@@ -1398,7 +1398,7 @@
 				tag_filter( data, default_branch_tag );
 				branch_tags_macros( data, branch_tags, default_branch_tag );
 				
-				md_ba.parse();	// parse before & after images
+				md_ba.parse(data);	// parse before & after images
 			});
 			load_md( "branch/master.md", 			"#card-branch-master" );
 			load_md( "branch/beta.md", 				"#card-branch-beta" );
@@ -1417,7 +1417,7 @@
 				tag_filter( data, default_branch_tag );
 				branch_tags_macros( data, branch_tags, default_branch_tag );
 				
-				md_ba.parse();	// parse before & after images
+				md_ba.parse(data);	// parse before & after images
 			});
         });
     </script>
