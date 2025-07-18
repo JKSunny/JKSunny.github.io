@@ -239,7 +239,6 @@ Refraction method ported from Rend2
 - Native master branch implements VBO caching for static world surfaces.
 
 > PBR branches have this enabled hard-coded \
-> Beta branch adds support for Ghoul2 and MD3 models. 
 
 > **r_vbo** - Cache static surfaces: \
 	0 : off \
@@ -264,7 +263,7 @@ By applying these lightmaps to static world surfaces, it can achieve a more visu
 ---
 
 ### Model surface caching - VBO
-	tags[beta,pbr]
+	tags[all]
 In addition to static world surfaces support for Ghoul2 (player) and MD3 models is added.
 
 - Bone matrices are transformed on the GPU.
@@ -274,10 +273,9 @@ In addition to static world surfaces support for Ghoul2 (player) and MD3 models 
 
 > Enabled hard-coded on PBR branches
 
-> **r_vbo** - Cache static surfaces: \
+> **r_vbo_models** - Cache static surfaces: \
 	0 : off \
-	1 : world \
-	2 : world + models
+	1 : world + models
 ---
 
 
