@@ -275,7 +275,7 @@ In addition to static world surfaces support for Ghoul2 (player) and MD3 models 
 
 > **r_vbo_models** - Cache static surfaces: \
 	0 : off \
-	1 : world + models
+	1 : models
 ---
 
 
