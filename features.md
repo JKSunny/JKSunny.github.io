@@ -1,4 +1,4 @@
-﻿### Physical Based Rendering (PBR)
+### Physical Based Rendering (PBR)
 	tags[pbr]
 ![](https://jksunny.github.io/assets/illustrations/pbr.jpg)
 
@@ -164,7 +164,7 @@ References: \
 
 > **r_DynamicGlowDelta** unused
 
-> **r_DynamicGlowIntensity** unused
+> **r_DynamicGlowIntensity** Controls intensity/brightness
 
 > **r_DynamicGlowSoft** unused
 
