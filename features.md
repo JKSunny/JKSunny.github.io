@@ -101,7 +101,6 @@ Dear ImGui is particularly suited to integration in game engines (for tooling), 
 <iframe style="width:100%; height:315px" src="https://www.youtube.com/embed/?listType=playlist&list=PLK0BIdk-GT_dPJyqZGN72nJ3PWv79XUw-" frameborder="0" allowfullscreen></iframe>
  
 > **NOTE** This is Work-in-progress, and is unstable. \
-> E.g. switching map requires a full restart because buffer clearing is not implemented yet.
 
 I wanted to learn more on the topic of RayTracing. \
 The current implementation is not yet complete, but the essential functionality should be there. \
@@ -124,9 +123,6 @@ I can highly recommend you to give their great effort a try if you have not done
 > Ghoul2 support is added *(No MD3 yet)*, and uses the same IBO's and VBO's used for **Beta** and **PBR** branch with minor tweaks. \
 > Q2RTX uses a single buffer for the IBO and VBO and does not have Ghoul2 support. \
 > I did port this method, but it is define guarded and can safely be removed.
-
-> BSP level loading and buffers differ. \
-> This should however be looked at and transitioned to Q2RTX method of tlas and blas creation *(top/bottom level accel structure)*
 
 > **GETTING STARTED** \
 > Set cvar r_normalMapping 1, r_specularMapping 1, r_cubeMapping 0, r_hdr 0, r_fullscreen 1 and r_vertexLight 2 

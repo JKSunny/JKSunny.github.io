@@ -96,3 +96,41 @@ Ghoul2 introduces alot of drawcalls, because it does not merge surfaces from ent
 
 ---
 
+
+### Entity model instancing path
+	tags[beta]
+
+_**Current state**_
+- Entites are interated and surfaces are added using addDrawSurf.
+- Drawsurfs are processed later, including world surfaces and follow the stage iterator path generating GPU drawcalls.
+
+**_The idea_**
+- Route MD3 and Ghoul2 entitiy models through a new instancing path during the per-view constants iteration, where entity data (light, matrix, bone info) are collected into uniforms, which are now SSBOs.
+- Groups are formed based on entity/model variations such as VBO, shader, fog index, and surface type + some more variations. These are further divided into subgroups based on `firstIndex` and `indexCount` to support indirect drawing.
+- When entities share similar model/shader configurations, an instance is added to the appropriate subgroup. 
+- Each instance contains a MVP matrix and uniform (now SSBO), indices for the entity, draw, and bone info.
+- Per view, a single `addDrawSurf` call is issued. Applying shader sorting, then iteratates over the groups/sub-groups and uploads instance data to a dynamic instance VBO and issues draw calls — either a single indexed draw, or an indirect draw when multiple subgroups are present.
+
+Pros:
+- Reduces draw calls for shared models (e.g., trees, enemies)
+- Slight FPS boost in cases with many identical entities
+
+Cons:
+- Adds CPU overhead for scenes with many unique models
+- Performance regression in dynamic scenes with diverse models
+- Potential for sorting issues (even though sorting by shader is preserved)
+- Introduces complexity — old path uses uniforms; new path uses SSBOs
+
+Conclusion:
+- I like that all model data is now generated at the start of the view, separating model logic from other surfaces — helpful for future ideas.
+- ✅ ~100 FPS **gain** on test scenes with 100 identical Kyle models.
+- ❌ ~250 FPS **loss** on complex, dynamic multiplayer scenes.
+
+As an experiment, I’m pleased with the result. For real-world use, a prepass could determine which entities benefit from instancing, while others fall back to the classic path.
+
+However, maintaining both code paths adds complexity.
+
+Overall, an interesting and promising experiment.
+
+---
+
