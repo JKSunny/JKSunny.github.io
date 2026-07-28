@@ -542,20 +542,18 @@
             }
 
 			async function fetch_metrics() {
-				const url = "metrics.json";
-                const res = await fetch(url, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
+                const url = "https://api.github.com/repos/JKSunny/JKSunny.github.io/contents/app/metrics.json?ref=backend";
 
-                const data = await res.json()
-
+                const res = await fetch(url);
                 if (!res.ok) {
-                    console.error("Request failed");
-					return;
-				}
+                    console.error("Request failed", res.status);
+                    return;
+                }
+
+                const file = await res.json();
+
+                const json = atob(file.content.replace(/\n/g, ""));
+                const data = JSON.parse(json);
 
 				for (repo in data) {
                     const info = data[repo];
