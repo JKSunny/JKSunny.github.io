@@ -6,7 +6,8 @@ $repos = [
     "JediofFreedom/JoF_EJK",
     "JKSunny/jk2mv",
     "JKSunny/OpenJK",
-    "JKSunny/EternalJK"
+    "JKSunny/EternalJK",
+    "JKSunny/JediKnightGalaxies"
 ];
 
 $results = [];
@@ -28,8 +29,8 @@ foreach ($repos as $repo) {
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTPHEADER => $headers
     ]);
-	
-	
+
+
 
     $response = curl_exec($ch);
 
