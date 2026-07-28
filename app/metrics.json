@@ -52,5 +52,14 @@
         "last_push": "2026-07-21T12:12:11Z",
         "default_branch": "master",
         "html_url": "https:\/\/github.com\/JKSunny\/EternalJK"
+    },
+    "JKSunny\/JediKnightGalaxies": {
+        "stars": 1,
+        "forks": 0,
+        "watchers": 1,
+        "open_issues": 0,
+        "last_push": "2026-06-01T16:05:53Z",
+        "default_branch": "main",
+        "html_url": "https:\/\/github.com\/JKSunny\/JediKnightGalaxies"
     }
 }
