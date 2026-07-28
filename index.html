@@ -10,8 +10,7 @@
    
    
     <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="github-markdown.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link rel="stylesheet" href="github-markdown.css">
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
@@ -508,6 +507,78 @@
 					$(this).addClass('fa-icon');
 				}
 			});
+
+            const time_units = [
+                { name: "year", secs: 365 * 24 * 60 * 60 },
+                { name: "month", secs: 30 * 24 * 60 * 60 },
+                { name: "week", secs: 7 * 24 * 60 * 60 },
+                { name: "day", secs: 24 * 60 * 60 },
+                { name: "hour", secs: 60 * 60 },
+                { name: "minute", secs: 60 }
+            ];
+
+            function githubTime(dateString) {
+                const now = new Date();
+                const date = new Date(dateString);
+                const seconds = Math.floor((now - date) / 1000);
+
+                if (seconds < 60)
+                    return "just now";
+
+                for (const unit of time_units) {
+                    const value = Math.floor(seconds / unit.secs);
+                    if (value >= 1) {
+                        if (unit.name === "day" && value === 1)
+                            return "yesterday";
+                        if (unit.name === "week" && value === 1)
+                            return "last week";
+                        if (unit.name === "month" && value === 1)
+                            return "last month";
+                        if (unit.name === "year" && value === 1)
+                            return "last year";
+                        return `${value} ${unit.name}${value > 1 ? "s" : ""} ago`;
+                    }
+                }
+            }
+
+			async function fetch_metrics() {
+				const url = "metrics.json";
+                const res = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+
+                const data = await res.json()
+
+                if (!res.ok) {
+                    console.error("Request failed");
+					return;
+				}
+
+				for (repo in data) {
+                    const info = data[repo];
+                    const link = $(`.card a[href*="${info.html_url}"]`);
+
+                    if (!link)
+                        continue;
+
+                    const card = $(link).closest('.card');
+                    card.find(".links").after(`
+						<div class="metrics">
+							<div><i class="fa-regular fa-star"></i> <span>${info.stars}</span></div>
+							<div><i class="fa-regular fa-eye"></i> <span>${info.watchers}</span></div>
+							<div><i class="fa-solid fa-code-fork"></i> <span>${info.forks}</span></div>
+							<div><i class="fa-solid fa-code-commit"></i> <span>${githubTime(info.last_push)}</span></div>
+						</div>
+					`);
+				}
+
+                console.log(data);
+			}
+
+            fetch_metrics();
 				
 			load_md( "faq.md", "#tab-faq" );
 			load_md( "features.md", "#tab-features", function( data ) {
