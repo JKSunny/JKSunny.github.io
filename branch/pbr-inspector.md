@@ -6,7 +6,5 @@ Other features: View collapsed shader, text/node based shader editor, profiler a
 
 *Started entity inspector, but this has been commented out.*
 
-> **NOTE** Release unavailable! [build binaries](https://github.com/JACoders/OpenJK/wiki/Compilation-guide) yourself from source - *Initially for personal use only, but here we are*
-
 [![master-todo](https://img.shields.io/badge/todo-list-grey.svg)](https://github.com/users/JKSunny/projects/1/views/1?filterQuery=branch%3A%22PBR+Inspector%22)
 [![pbr-inspector-devlogs](https://img.shields.io/badge/See-Devlog_videos-yellow.svg)](https://www.youtube.com/playlist?list=PLK0BIdk-GT_erDdqgLrzhGbpeIXZVRHL0)
