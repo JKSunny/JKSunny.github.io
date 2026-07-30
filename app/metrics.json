@@ -1,10 +1,10 @@
 {
     "taysta\/TaystJK": {
-        "stars": 46,
+        "stars": 47,
         "forks": 23,
         "watchers": 4,
         "open_issues": 25,
-        "last_push": "2026-06-25T04:08:15Z",
+        "last_push": "2026-07-30T11:36:24Z",
         "default_branch": "master",
         "html_url": "https:\/\/github.com\/taysta\/TaystJK"
     },
@@ -21,7 +21,7 @@
         "stars": 6,
         "forks": 14,
         "watchers": 2,
-        "open_issues": 11,
+        "open_issues": 12,
         "last_push": "2026-07-28T20:54:27Z",
         "default_branch": "master",
         "html_url": "https:\/\/github.com\/JediofFreedom\/JoF_EJK"
@@ -40,7 +40,7 @@
         "forks": 0,
         "watchers": 1,
         "open_issues": 0,
-        "last_push": "2026-07-12T13:48:47Z",
+        "last_push": "2026-07-30T09:21:57Z",
         "default_branch": "master",
         "html_url": "https:\/\/github.com\/JKSunny\/OpenJK"
     },
@@ -48,8 +48,8 @@
         "stars": 17,
         "forks": 2,
         "watchers": 1,
-        "open_issues": 12,
-        "last_push": "2026-07-29T13:01:05Z",
+        "open_issues": 11,
+        "last_push": "2026-07-30T09:18:48Z",
         "default_branch": "master",
         "html_url": "https:\/\/github.com\/JKSunny\/EternalJK"
     },
@@ -58,7 +58,7 @@
         "forks": 0,
         "watchers": 1,
         "open_issues": 0,
-        "last_push": "2026-06-01T16:05:53Z",
+        "last_push": "2026-07-30T09:58:35Z",
         "default_branch": "main",
         "html_url": "https:\/\/github.com\/JKSunny\/JediKnightGalaxies"
     }
