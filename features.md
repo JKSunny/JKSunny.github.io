@@ -19,6 +19,44 @@ Easy expandedable profiler
 
 ---
 
+### Ambient Occlusion (WIP)
+	tags[pbr]
+
+:::tabs
+@AO
+![md_ba](https://jksunny.github.io/assets/illustrations/ssao.png)
+![](https://jksunny.github.io/assets/illustrations/gtao.png)
+
+@Final render
+![md_ba](https://jksunny.github.io/assets/illustrations/disabled_final.png)
+![](https://jksunny.github.io/assets/illustrations/gtao_final.png)
+:::
+
+
+> **INFO:** SSAO/GTAO are screen-space techniques used to approximate soft ambient shadows.<br>
+These methods can have a significant impact on performance.
+
+Current SSAO and GTAO implementation uses a depth-extracted image generated after main scene rendering.
+This depth image is then processed to calculate the ambient occlusion, followed by a blurring pass for smoother blending. \
+Because AO is computed after the main scene, current method can cause sorting artifacts. \
+For example: SSAO may appear on top of saber blades or fog.
+
+
+>	 **SSAO**: (Screen Space Ambient Occlusion) estimates ambient occlusion by sampling the surrounding screen-space depth and is generally simpler and faster.
+
+>	 **GTAO**: (Ground Truth Ambient Occlusion) uses a more advanced horizon-based approach to better estimate occlusion around surfaces, generally producing more detailed and stable results at a higher computational cost.
+
+> **r_ssao** - Set Ambient Occlusion mode: \
+	0 : Disabled \
+	1 : SSAO \
+	2 : GTAO
+
+
+This is an alpha/WIP implementation and needs future TLC. \
+Follow progress in issue [#64](https://github.com/JKSunny/EternalJK/issues/68)
+
+---
+
 ### Image Based Lighting (IBL)
 	tags[pbr]
 <iframe  style="width:100%; height:315px" src="https://www.youtube.com/embed/oTgeiTn6g4E" frameborder="0" allowfullscreen></iframe>

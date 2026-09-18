@@ -312,7 +312,74 @@
  
     <script>
         $(document).ready(function () {
-			
+
+var md_tabs =
+{
+	template: '<div class="md_tabs"><div class="md_tabs_nav"></div><div class="md_tabs_content"></div></div>',
+
+	parse: function( data )
+	{
+		var that = typeof this === "undefined" ? md_tabs : this;
+
+		data.$dom_element.find( "p" ).each( function() {
+			var source = $( this );
+			if ( !source.text().trim().startsWith( ":::tabs" ) )
+				return;
+
+			// collect
+			var tabs 	= [];
+			var nodes 	= [];
+			var node 	= source;
+			while ( node.length ) {
+				var text = node.text().trim();
+				nodes.push( node );
+
+				if ( text.startsWith( ":::tabs" ) )
+					text = text.substring( 7 ).trim();
+
+				if ( text.startsWith( "@" ) )
+					tabs.push( { 
+						title: text.substring( 1 ).split( "\n" )[0].trim(), 
+						content: node.children().clone() 
+					} );
+
+				if ( text.includes( ":::" ) )
+					break;
+
+				node = node.next( "p" );
+			}
+
+			// draw
+			var output 	= $( that.template );
+			var nav 	= output.find( ".md_tabs_nav" );
+			var content = output.find( ".md_tabs_content" );
+			$.each( tabs, function( i, tab ) {
+				var button = $( '<button type="button"></button>' ).text( tab.title );
+				var tab_content = $( '<div class="md_tab"></div>' ).append( tab.content );
+
+				button.on( "click", function() {
+					nav.find( "button" ).removeClass( "active" );
+					content.children( ".md_tab" ).removeClass( "active" );
+					button.addClass( "active" );
+					tab_content.addClass( "active" );
+				});
+
+				nav.append( button );
+				content.append( tab_content );
+
+				if ( i === 0 )
+					button.trigger( "click" );
+			});
+
+			source.before( output );
+
+			$.each( nodes, function( _, node ) {
+				node.remove();
+			});
+		});
+	}
+};
+
 			var md_ba = 
 			{
 				template: 	'<div class="md_ba"></div',
@@ -593,7 +660,8 @@
 				tag_filter( data, default_branch_tag );
 				branch_tags_macros( data, branch_tags, default_branch_tag );
 				
-				md_ba.parse(data);	// parse before & after images
+				md_tabs.parse(data);	// parse tabs
+				md_ba.parse(data);		// parse before & after images
 			});
 			load_md( "branch/master.md", 			"#card-branch-master" );
 			load_md( "branch/beta.md", 				"#card-branch-beta" );
@@ -613,7 +681,8 @@
 				tag_filter( data, default_branch_tag );
 				branch_tags_macros( data, branch_tags, default_branch_tag );
 				
-				md_ba.parse(data);	// parse before & after images
+				md_tabs.parse(data);	// parse tabs
+				md_ba.parse(data);		// parse before & after images
 			});
         });
     </script>
