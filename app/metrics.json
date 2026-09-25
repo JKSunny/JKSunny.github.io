@@ -1,10 +1,10 @@
 {
     "taysta\/TaystJK": {
-        "stars": 46,
+        "stars": 47,
         "forks": 25,
         "watchers": 4,
-        "open_issues": 19,
-        "last_push": "2026-09-24T16:44:55Z",
+        "open_issues": 21,
+        "last_push": "2026-09-25T15:53:44Z",
         "default_branch": "master",
         "html_url": "https:\/\/github.com\/taysta\/TaystJK"
     },
@@ -21,8 +21,8 @@
         "stars": 7,
         "forks": 15,
         "watchers": 2,
-        "open_issues": 52,
-        "last_push": "2026-09-23T13:33:10Z",
+        "open_issues": 55,
+        "last_push": "2026-09-24T17:43:10Z",
         "default_branch": "master",
         "html_url": "https:\/\/github.com\/JediofFreedom\/JoF_EJK"
     },
@@ -45,7 +45,7 @@
         "html_url": "https:\/\/github.com\/JKSunny\/OpenJK"
     },
     "JKSunny\/EternalJK": {
-        "stars": 18,
+        "stars": 19,
         "forks": 2,
         "watchers": 1,
         "open_issues": 14,
